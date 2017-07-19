@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET           /                                    controllers.Application.index
+
+# User
+POST          /api/user                            controllers.api.ApiUserController.create
+GET           /api/user                            controllers.api.ApiUserController.findAll
+
+# Todo
+POST          /api/todo                            controllers.api.ApiTodoController.createOrUpdate
+PUT           /api/todo                            controllers.api.ApiTodoController.createOrUpdate
+GET           /api/todo                            controllers.api.ApiTodoController.findAll
+GET           /api/todo/created-by/:userId         controllers.api.ApiTodoController.findAllCreatedBy(userId: Long)
+GET           /api/todo/assigned-to/:userId        controllers.api.ApiTodoController.findAllAssignedTo(userId: Long)
+POST          /api/todo/complete/:todoId           controllers.api.ApiTodoController.complete(todoId: Long)
+POST          /api/todo/resume/:todoId             controllers.api.ApiTodoController.resume(todoId: Long)
+DELETE        /api/todo/:id                        controllers.api.ApiTodoController.delete(id: Long)
+
+# Comment
+POST          /api/comments                        controllers.api.ApiCommentController.create
+GET           /api/comments/:todoId                controllers.api.ApiCommentController.findAll(todoId: Long)
+DELETE        /api/comments/:commentId             controllers.api.ApiCommentController.delete(commentId: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                        controllers.Assets.at(path="/public", file)
+
+    
